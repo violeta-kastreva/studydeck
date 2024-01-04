@@ -1,12 +1,17 @@
 package com.web.studydeck.web;
 
 import com.web.studydeck.model.entity.Schedule;
+import com.web.studydeck.model.service.ScheduleDTO;
 import com.web.studydeck.service.ScheduleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.List;import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Mono;
+import reactor.core.publisher.Flux;
 
 @RestController
 @RequestMapping("/api/schedule")
@@ -16,23 +21,24 @@ public class ScheduleController {
     private ScheduleService scheduleService;
 
     @GetMapping("/{userId}")
-    public ResponseEntity<List<Schedule>> getUserSchedule(@PathVariable Long userId) {
-        // Logic to get the schedule for a specific user
-        List<Schedule> schedules = scheduleService.findSchedulesByUserId(userId);
-        return ResponseEntity.ok(schedules);
+    public Flux<ScheduleDTO> getUserSchedule(@PathVariable Long userId) {
+        return scheduleService.findSchedulesByUserId(userId);
     }
 
-    @PutMapping("/{scheduleId}/edit")
-    public ResponseEntity<Schedule> editSchedule(@PathVariable Long scheduleId, @RequestBody Schedule schedule) {
-        // Logic to update a schedule
-        Schedule updatedSchedule = scheduleService.saveSchedule(schedule);
-        return ResponseEntity.ok(updatedSchedule);
+    @PostMapping
+    public Mono<ScheduleDTO> createSchedule(@RequestBody ScheduleDTO scheduleDTO) {
+        return scheduleService.saveSchedule(scheduleDTO);
     }
 
-    @GetMapping("/user/{userId}")
-    public ResponseEntity<List<Schedule>> viewFriendSchedule(@PathVariable Long userId) {
-        // Logic to get a friend's schedule
-        List<Schedule> schedules = scheduleService.findSchedulesByUserId(userId);
-        return ResponseEntity.ok(schedules);
+    @PutMapping("/{scheduleId}")
+    public Mono<ScheduleDTO> updateSchedule(@PathVariable Long scheduleId, @RequestBody ScheduleDTO scheduleDTO) {
+        scheduleDTO.setId(scheduleId);
+        return scheduleService.saveSchedule(scheduleDTO);
+    }
+
+    @DeleteMapping("/{scheduleId}")
+    public Mono<ResponseEntity<Void>> deleteSchedule(@PathVariable Long scheduleId) {
+        return scheduleService.deleteSchedule(scheduleId)
+                .thenReturn(ResponseEntity.ok().<Void>build());
     }
 }

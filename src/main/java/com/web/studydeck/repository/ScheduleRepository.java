@@ -5,8 +5,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface ScheduleRepository extends JpaRepository<Schedule, Long> {
-    List<Schedule> findAllByUserId(Long userId);
-    // Custom queries for schedules
-}
+import org.springframework.data.repository.reactive.ReactiveCrudRepository;
+import reactor.core.publisher.Flux;
 
+public interface ScheduleRepository extends ReactiveCrudRepository<Schedule, Long> {
+    Flux<Schedule> findAllByUserId(Long userId);
+    // Custom queries
+}

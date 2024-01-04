@@ -4,12 +4,14 @@ import com.web.studydeck.model.entity.Schedule;
 
 import java.util.List;
 
-public interface ScheduleService {
-    List<Schedule> findAllSchedules();
-    Schedule findScheduleById(Long id);
-    Schedule saveSchedule(Schedule schedule);
-    void deleteSchedule(Long id);
+import com.web.studydeck.model.service.ScheduleDTO;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
-    List<Schedule> findSchedulesByUserId(Long userId);
-    // Other necessary methods
+public interface ScheduleService {
+    Flux<ScheduleDTO> findAllSchedules();
+    Mono<ScheduleDTO> findScheduleById(Long id);
+    Mono<ScheduleDTO> saveSchedule(ScheduleDTO scheduleDTO);
+    Mono<Void> deleteSchedule(Long id);
+    Flux<ScheduleDTO> findSchedulesByUserId(Long userId);
 }

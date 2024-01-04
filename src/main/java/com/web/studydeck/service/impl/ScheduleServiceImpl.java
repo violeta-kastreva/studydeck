@@ -1,5 +1,6 @@
 package com.web.studydeck.service.impl;
 import com.web.studydeck.model.entity.Schedule;
+import com.web.studydeck.model.service.ScheduleDTO;
 import com.web.studydeck.repository.ScheduleRepository;
 import com.web.studydeck.service.ScheduleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,37 +8,47 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.modelmapper.ModelMapper;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+
 @Service
 public class ScheduleServiceImpl implements ScheduleService {
 
     @Autowired
     private ScheduleRepository scheduleRepository;
 
+    private final ModelMapper modelMapper = new ModelMapper();
+
     @Override
-    public List<Schedule> findAllSchedules() {
-        return scheduleRepository.findAll();
+    public Flux<ScheduleDTO> findAllSchedules() {
+        return scheduleRepository.findAll()
+                .map(schedule -> modelMapper.map(schedule, ScheduleDTO.class));
     }
 
     @Override
-    public Schedule findScheduleById(Long id) {
-        return scheduleRepository.findById(id).orElse(null);
+    public Mono<ScheduleDTO> findScheduleById(Long id) {
+        return scheduleRepository.findById(id)
+                .map(schedule -> modelMapper.map(schedule, ScheduleDTO.class));
     }
 
     @Override
-    public Schedule saveSchedule(Schedule schedule) {
-        return scheduleRepository.save(schedule);
+    public Mono<ScheduleDTO> saveSchedule(ScheduleDTO scheduleDTO) {
+        Schedule schedule = modelMapper.map(scheduleDTO, Schedule.class);
+        return scheduleRepository.save(schedule)
+                .map(savedSchedule -> modelMapper.map(savedSchedule, ScheduleDTO.class));
     }
 
     @Override
-    public void deleteSchedule(Long id) {
-        scheduleRepository.deleteById(id);
+    public Mono<Void> deleteSchedule(Long id) {
+        return scheduleRepository.deleteById(id);
     }
 
     @Override
-    public List<Schedule> findSchedulesByUserId(Long userId) {
-        return scheduleRepository.findAllByUserId(userId);
+    public Flux<ScheduleDTO> findSchedulesByUserId(Long userId) {
+        return scheduleRepository.findAllByUserId(userId)
+                .map(schedule -> modelMapper.map(schedule, ScheduleDTO.class));
     }
-
-    // Additional business logic and methods
 }
-
