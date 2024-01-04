@@ -7,10 +7,12 @@ import HomeComponent from "./components/HomePage";
 function App() {
   return (
     <Router>
-      {/* <NavBar fullyDark = {false}/> */}
+      <div id = "black-rect"></div>
       <div id="page">
         <Routes>
           <Route exact path="/" element={<HomeComponent />} />
+          <Route exact path="/flashcards/create" element={<HomeComponent />} />
+
           {/* <Route exact path="/yachts/:id" element={<YachtComponent />} />
           <Route exact path="/services" element={<AgencyComponent />} />
           <Route exact path="/contacts" element={<ContactsComponent />} /> */}
