@@ -1,0 +1,23 @@
+import "./App.css";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import HomeComponent from "./components/HomePage";
+
+// import React, { useEffect , useState } from 'react';
+
+function App() {
+  return (
+    <Router>
+      {/* <NavBar fullyDark = {false}/> */}
+      <div id="page">
+        <Routes>
+          <Route exact path="/" element={<HomeComponent />} />
+          {/* <Route exact path="/yachts/:id" element={<YachtComponent />} />
+          <Route exact path="/services" element={<AgencyComponent />} />
+          <Route exact path="/contacts" element={<ContactsComponent />} /> */}
+        </Routes>
+      </div>
+    </Router>
+  );
+}
+
+export default App;
