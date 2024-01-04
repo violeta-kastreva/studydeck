@@ -4,15 +4,16 @@ import com.web.studydeck.model.entity.Friend;
 
 import java.util.List;
 
+import com.web.studydeck.model.service.FriendDTO;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+
 public interface FriendService {
-    List<Friend> findAllFriends();
-    Friend findFriendById(Long id);
-    Friend saveFriend(Friend friend);
-    void deleteFriend(Long id);
-
-    List<Friend> findFriendsByUserId(Long userId);
-
-    List<Friend> findFriendRequestsByUserId(Long userId);
-
-        // Other necessary methods
+    Flux<FriendDTO> findAllFriends();
+    Mono<FriendDTO> findFriendById(Long id);
+    Mono<FriendDTO> saveFriend(FriendDTO friendDTO);
+    Mono<Void> deleteFriend(Long id);
+    Flux<FriendDTO> findFriendsByUserId(Long userId);
+    Flux<FriendDTO> findFriendRequestsByUserId(Long userId);
 }
+

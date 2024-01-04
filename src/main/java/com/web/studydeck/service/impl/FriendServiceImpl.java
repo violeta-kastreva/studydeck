@@ -1,11 +1,17 @@
 package com.web.studydeck.service.impl;
 import com.web.studydeck.model.entity.Friend;
 import com.web.studydeck.model.enums.FriendStatus;
+import com.web.studydeck.model.service.FriendDTO;
 import com.web.studydeck.repository.FriendRepository;
 import com.web.studydeck.service.FriendService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.modelmapper.ModelMapper;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 @Service
 public class FriendServiceImpl implements FriendService {
@@ -13,36 +19,41 @@ public class FriendServiceImpl implements FriendService {
     @Autowired
     private FriendRepository friendRepository;
 
+    private final ModelMapper modelMapper = new ModelMapper();
+
     @Override
-    public List<Friend> findAllFriends() {
-        return friendRepository.findAll();
+    public Flux<FriendDTO> findAllFriends() {
+        return friendRepository.findAll()
+                .map(friend -> modelMapper.map(friend, FriendDTO.class));
     }
 
     @Override
-    public Friend findFriendById(Long id) {
-        return friendRepository.findById(id).orElse(null);
+    public Mono<FriendDTO> findFriendById(Long id) {
+        return friendRepository.findById(id)
+                .map(friend -> modelMapper.map(friend, FriendDTO.class));
     }
 
     @Override
-    public Friend saveFriend(Friend friend) {
-        return friendRepository.save(friend);
+    public Mono<FriendDTO> saveFriend(FriendDTO friendDTO) {
+        Friend friend = modelMapper.map(friendDTO, Friend.class);
+        return friendRepository.save(friend)
+                .map(savedFriend -> modelMapper.map(savedFriend, FriendDTO.class));
     }
 
     @Override
-    public void deleteFriend(Long id) {
-        friendRepository.deleteById(id);
+    public Mono<Void> deleteFriend(Long id) {
+        return friendRepository.deleteById(id);
     }
 
     @Override
-    public List<Friend> findFriendsByUserId(Long userId) {
-        return friendRepository.findAllByUserId(userId);
+    public Flux<FriendDTO> findFriendsByUserId(Long userId) {
+        return friendRepository.findAllByUserId(userId)
+                .map(friend -> modelMapper.map(friend, FriendDTO.class));
     }
 
     @Override
-    public List<Friend> findFriendRequestsByUserId(Long userId) {
-        // Assuming "requested" is the status for pending friend requests
-        return friendRepository.findByFriendIdAndStatus(userId, FriendStatus.REQUESTED);
+    public Flux<FriendDTO> findFriendRequestsByUserId(Long userId) {
+        return friendRepository.findByFriendIdAndStatus(userId, FriendStatus.REQUESTED)
+                .map(friendRequest -> modelMapper.map(friendRequest, FriendDTO.class));
     }
-
-    // Additional business logic and methods
 }

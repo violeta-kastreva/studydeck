@@ -4,10 +4,14 @@ import com.web.studydeck.model.entity.Forum;
 
 import java.util.List;
 
+import com.web.studydeck.model.service.ForumDTO;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+
 public interface ForumService {
-    List<Forum> findAllForums();
-    Forum findForumById(Long id);
-    Forum saveForum(Forum forum);
-    void deleteForum(Long id);
-    // Other necessary methods
+    Flux<ForumDTO> findAllForums();
+    Mono<ForumDTO> findForumById(Long id);
+    Mono<ForumDTO> saveForum(ForumDTO forumDTO);
+    Mono<Void> deleteForum(Long id);
 }
+

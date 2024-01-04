@@ -1,12 +1,18 @@
 package com.web.studydeck.web;
 
 import com.web.studydeck.model.entity.Friend;
+import com.web.studydeck.model.service.FriendDTO;
 import com.web.studydeck.service.FriendService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Mono;
+import reactor.core.publisher.Flux;
 
 @RestController
 @RequestMapping("/api/friends")
@@ -16,23 +22,19 @@ public class FriendController {
     private FriendService friendService;
 
     @GetMapping("/{userId}")
-    public ResponseEntity<List<Friend>> listFriends(@PathVariable Long userId) {
-        // Logic to list all friends of a user
-        List<Friend> friends = friendService.findFriendsByUserId(userId);
-        return ResponseEntity.ok(friends);
+    public Flux<FriendDTO> listFriends(@PathVariable Long userId) {
+        return friendService.findFriendsByUserId(userId);
     }
 
     @PostMapping("/request")
-    public ResponseEntity<Friend> sendFriendRequest(@RequestBody Friend friend) {
-        // Logic to send a friend request
-        Friend newFriend = friendService.saveFriend(friend);
-        return ResponseEntity.ok(newFriend);
+    public Mono<FriendDTO> sendFriendRequest(@RequestBody FriendDTO friendDTO) {
+        return friendService.saveFriend(friendDTO);
     }
 
     @GetMapping("/requests/{userId}")
-    public ResponseEntity<List<Friend>> viewFriendRequests(@PathVariable Long userId) {
-        // Logic to view friend requests for a user
-        List<Friend> friendRequests = friendService.findFriendRequestsByUserId(userId);
-        return ResponseEntity.ok(friendRequests);
+    public Flux<FriendDTO> viewFriendRequests(@PathVariable Long userId) {
+        return friendService.findFriendRequestsByUserId(userId);
     }
+
+    // Additional endpoints...
 }
