@@ -39,13 +39,14 @@
 }
 
 .add{
-    margin-top: 50px;
+    margin-top: 40px;
     display: flex;
     flex-direction: column;
     background-color: #1c1c1a;
     padding: 10px;
     border-radius: 20px;
     box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 10px 2px red;
 }
 
 .add-top{
@@ -71,7 +72,7 @@
 
 .category-box{
     cursor: pointer;
-    background-color: #4d4c7d;
+    background-color: #44434d;
     width: calc((100% - 10px) / 2);
     padding: 5px;
     box-sizing: border-box;
@@ -84,7 +85,7 @@
 #add-card-wrapper{
     display: flex;
     justify-content: space-around;
-    margin-top: 50px;
+    margin-top: 40px;
 }
 
 #add-card-wrapper >button{
@@ -95,11 +96,14 @@
 }
 
 #add-card{
+    opacity: 0.7;
+    transition: 0.2s ease-in-out;
     background-color: #4d4c7d;
     border: none;
 }
 
 #cancel{
+    opacity: 0.7;
     background-color: transparent;
     border: 2px solid #4d4c7d;
 }
@@ -118,14 +122,15 @@
 
 #create-card-description{
     margin-top: 10px;
-    height: 60px;   
+    height: 60px;
+    box-shadow: 0 0 10px 2px red;
 }
 
 #qna-wrapper{
     display: flex;
     flex-direction: column;
     width: min-content;
-    margin-top: 50px;
+    margin-top: 40px;
 }
 
 #qna{
@@ -134,7 +139,11 @@
 }
 
 #create-card-question , #create-card-answer{
-    height: 130px;
+    height: 110px;
+}
+
+#create-card-answer{
+    box-shadow: 0 0 10px 2px red;
 }
 
 #add-qna{
@@ -144,9 +153,53 @@
 }
 
 #add-qna-button{
+    opacity: 0.7;
     background-color: #4d4c7d;
     padding: 5px;
     border-radius: 10px;
     border: none;
     color: white;
+}
+
+
+
+
+#all-qnas{
+    margin-top: 40px;
+    display: flex;
+    gap: 10px;
+    background-color: #4d4c7d;
+    width: min-content;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    padding: 5px;
+}
+
+#all-questions{
+    cursor: pointer;
+}
+
+#all-answers{
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+#all-qna-data{
+    height: 150%;
+    background-color: #1c1c1a;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+
+
+
+#add-card:hover , #cancel:hover , #add-qna-button:hover{
+    opacity: 1;
+    color: white;
+}
+
+#create-card-answer , #create-card-description , .add , .error-label{
+    transition: 0.2s ease-in;
 }

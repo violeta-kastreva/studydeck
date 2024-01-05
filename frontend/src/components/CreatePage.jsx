@@ -21,7 +21,7 @@ export default class CreateComponent extends Component {
                                 <div className = "add" id = "add1">
                                     <div className = "add-top">
                                         <label>Add Category</label>
-                                        <label className = "error-label">Please select category</label>
+                                        <label className = "error-label" id = "error-select-category">Please select category</label>
                                     </div>
                                     <div className = "category-wrapper">
                                         <div className = 'category-box'>Math</div>
@@ -34,7 +34,7 @@ export default class CreateComponent extends Component {
                                 <div className = "add" id = "add2">
                                     <div className = 'add-top'>
                                         <label>Add Tags</label>
-                                        <label className = "error-label">Please select tags</label>
+                                        <label className = "error-label" id = "error-select-tags">Please select tags</label>
                                     </div>
                                     <div className = "category-wrapper">
                                         <div className = 'category-box'>Algebra</div>
@@ -52,7 +52,7 @@ export default class CreateComponent extends Component {
                                 </div>
                             </div>
                             <div id = "create-bottom-right">
-                                <label className = "error-label">Enter description</label>
+                                <label className = "error-label" id = "error-enter-description">Enter description</label>
                                 <input className = "create-card-data" id = "create-card-title" placeholder = "Card title"></input>
                                 <input className = "create-card-data" id = "create-card-description" placeholder = "Card description"></input>
 
@@ -63,8 +63,16 @@ export default class CreateComponent extends Component {
                                     </div>
                                     <div id = "add-qna">
                                         <button id = "add-qna-button">Add question +</button>
-                                        <label className = "error-label">Enter an answer</label>
+                                        <label className = "error-label" id = "error-enter-answer">Enter an answer</label>
                                     </div>
+                                </div>
+
+                                <div id = "all-qnas-wrapper">
+                                    <div id = "all-qnas">
+                                        <div id = "all-questions">Questions</div>
+                                        <div id = "all-answers">Answers</div>
+                                    </div>
+                                    <div id = "all-qna-data"></div>
                                 </div>
                             </div>
                         </div>
