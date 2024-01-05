@@ -140,9 +140,6 @@
 
 #create-card-question , #create-card-answer{
     height: 110px;
-}
-
-#create-card-answer{
     box-shadow: 0 0 10px 2px red;
 }
 

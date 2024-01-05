@@ -11,7 +11,7 @@ export default class CreateComponent extends Component {
                 <div className = 'page'>
                     <div id = 'create'>
                         <div id = "create-top">
-                            <label>Study deck</label>
+                            <label>Study Deck</label>
                             <div id = "create-profile">
                                 <Profile />
                             </div>
@@ -63,7 +63,7 @@ export default class CreateComponent extends Component {
                                     </div>
                                     <div id = "add-qna">
                                         <button id = "add-qna-button">Add question +</button>
-                                        <label className = "error-label" id = "error-enter-answer">Enter an answer</label>
+                                        <label className = "error-label" id = "error-enter-answer">Enter question and answer</label>
                                     </div>
                                 </div>
 
