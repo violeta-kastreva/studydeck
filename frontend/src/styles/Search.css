@@ -1,0 +1,26 @@
+.search-bar-wrapper{
+    display: flex;
+    margin-top: 10px;
+    background-color: #272530;
+    padding: 10px;
+    border-radius: 18px;
+    width: 100%;
+}
+
+.search-bar-wrapper >input{
+    background-color: #272530;
+    border: none;
+    margin: 0px 7.5px;
+    width: 100%;
+    color: white;
+}
+
+.search-bar{
+    height: 18px;
+    width: 18px;
+}
+
+.search-bar-img{
+    cursor: pointer;
+    width: 90%;
+}

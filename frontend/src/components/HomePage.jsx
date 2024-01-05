@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import '../styles/HomePage.css';
 
-// import HomeCard from "./HomeCard";
+import Search from "./Search";
 
-import search from '../assets/search.png';
 import magnifying_glass from '../assets/magnifying-glass.png';
 import contract from '../assets/contract.png';
 import friend from '../assets/friend.png';
@@ -14,7 +13,7 @@ export default class HomeComponent extends Component {
     render() {
         return (
             <div className = 'wrapper'>
-                <div id = "home-page">
+                <div className = "page">
                     <div id = "home-top">
                         <label>Study Deck</label>
                         <div>Log in</div>
@@ -23,11 +22,8 @@ export default class HomeComponent extends Component {
                         <div id = "home-main-text">
                             <label>Master your studies with personalized flashcards</label>                        
                         </div>
-                        <div id = "search-bar-wrapper">
-                            <div id = "search-bar">
-                                <img id = "search-bar-img" src = {search}></img>
-                            </div>
-                            <input placeholder = "Search for cards"></input>
+                        <div id = "home-search">
+                            <Search defaultText = 'Search for cards'/>
                         </div>
                     </div>
                     <div id = "home-bottom">
