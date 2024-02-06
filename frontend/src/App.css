@@ -1,7 +1,7 @@
 body{
   font-family: "Franklin Gothic Medium";
   color: #ebe8f0;
-  overflow: hidden;
+  overflow: auto;
 }
 
 button{

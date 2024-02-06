@@ -10,9 +10,6 @@
 }
 
 
-
-
-
 #home-middle{
     display: flex;
     flex-direction: column;
@@ -96,8 +93,6 @@
     background-color: #272530;
 }
 
-
-
 #sign-in{
     width: 50%;
     height: 25%;
@@ -111,4 +106,47 @@
 #sign-in:hover{
     color: white;
     opacity: 0.9;
+}
+
+@media (max-width: 1000px) {
+    #home-bottom{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin: 100px 0px 0px 0px;
+        height: 800px;
+        gap: 80px;
+        background-color: #1e1d24;
+        border-radius: 15px;
+        box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
+        padding-bottom: 50px;
+    }
+    .home-layer{
+        width: 300px;
+        height: 213px;
+    }
+    .card-title{
+        width: 261px;
+    }
+    
+    .card-content{
+        width: 261px;
+    }
+    .card-image-magnifying{
+        transform: translateY(-90%) rotateZ(-30deg);
+        width: 77px;
+    }
+    
+    .card-image-contract{
+        transform: translateY(-75%) rotateZ(30deg);
+        width: 69px;
+    }
+    
+    .card-image-friend{
+        transform: translateY(-90%);
+        width: 75px;
+    }
+    .card{
+        height: 213px;
+    }
 }
