@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import '../styles/ForumPage.css';
-
 import Thread from "./Thread";
 
 
