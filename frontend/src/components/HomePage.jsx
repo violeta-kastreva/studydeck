@@ -16,7 +16,7 @@ export default class HomeComponent extends Component {
                 <div className = "page">
                     <div id = "home-top">
                         <label>Study Deck</label>
-                        <div>Log in</div>
+                        <div onClick={() => window.location.href = '/login'}>Log in</div>
                     </div>
                     <div id = "home-middle">
                         <div id = "home-main-text">
@@ -38,7 +38,7 @@ export default class HomeComponent extends Component {
                             <img className = "card-image card-image-contract" src = {contract}></img>
                             <div className = 'home-layer'></div>
                             <label className = 'card-title'>Sign in to start making your own flash cards</label>
-                            <button id = 'sign-in'>Sign In</button>
+                            <button id = 'sign-in' onClick={() => window.location.href = '/register'}>Sign In</button>
                         </div>
 
                         <div className = 'card'>
