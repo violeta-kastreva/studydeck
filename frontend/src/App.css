@@ -31,3 +31,9 @@ button{
   border-radius: 15px;
   background-color: #1e1d24;
 }
+
+@media (max-width: 840px) {
+  .wrapper{
+    height: 100%;
+  }
+}

@@ -80,8 +80,6 @@
     text-align: center;
 }
 
-
-
 #add-card-wrapper{
     display: flex;
     justify-content: space-around;
@@ -158,9 +156,6 @@
     color: white;
 }
 
-
-
-
 #all-qnas{
     margin-top: 40px;
     display: flex;
@@ -199,4 +194,47 @@
 
 #create-card-answer , #create-card-description , .add , .error-label{
     transition: 0.2s ease-in;
+}
+
+@media (max-width: 840px) {
+    #create{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 1200px;
+        background-color: #1e1d24;
+    }
+    #create-bottom{
+        flex-direction: column;
+        flex-grow: unset;
+        justify-content: center;
+        align-items: center;
+        gap: 20px
+    }
+    .add{
+       
+        width: 380px;
+    }
+    #create-bottom-left{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 380px;
+    }
+    #create-bottom-right{
+       width: 472px;
+       height: 650px;
+    }
+
+    #add-card-wrapper{
+        justify-content: unset;
+        gap: 15px;
+        width: 190px;
+    }
+
+    #add-card-wrapper >button{
+        width: 95px;
+    }
+    
 }
