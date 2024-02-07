@@ -1,0 +1,23 @@
+#dashboard-menus-wrapper{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.dashboard-menus-row{
+    height: 35px;
+    width: 120px;
+    display: flex;
+    align-items: center;
+    padding: 7.5px;
+    border-radius: 15px;
+}
+
+.dashboard-menus-row >img{
+    height: 80%;
+}
+
+.dashboard-menus-row >a{
+    margin-left: 10px;
+    text-decoration: none;
+    color: #ebe8f0;
+}

@@ -12,6 +12,11 @@
     box-sizing: border-box;
 }
 
+#create-top >a{
+    text-decoration: none;
+    color: white;
+}
+
 #create-profile{
     height: 50px;
 }

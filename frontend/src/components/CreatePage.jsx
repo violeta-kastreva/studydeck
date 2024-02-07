@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import '../styles/CreatePage.css';
 import Profile from './Profile';
 
-
-
 export default class CreateComponent extends Component {
     render() {
         return (
@@ -11,7 +9,7 @@ export default class CreateComponent extends Component {
                 <div className = 'page'>
                     <div id = 'create'>
                         <div id = "create-top">
-                            <label>Study Deck</label>
+                            <a href = "/">Study Deck</a>
                             <div id = "create-profile">
                                 <Profile />
                             </div>
@@ -47,7 +45,7 @@ export default class CreateComponent extends Component {
                                 </div>
 
                                 <div id = "add-card-wrapper">
-                                    <button id = "add-card">Add Card</button>
+                                    <button id = "add-card">Add Deck</button>
                                     <button id = "cancel">Cancel</button>
                                 </div>
                             </div>
