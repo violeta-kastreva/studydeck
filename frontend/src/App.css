@@ -1,7 +1,7 @@
 body{
   font-family: "Franklin Gothic Medium";
   color: #ebe8f0;
-  overflow: hidden;
+  overflow: auto;
 }
 
 button{
@@ -30,4 +30,10 @@ button{
   width: 100%;
   border-radius: 15px;
   background-color: #1e1d24;
+}
+
+@media (max-width: 840px) {
+  .wrapper{
+    height: 100%;
+  }
 }
