@@ -6,6 +6,7 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import ForumPage from "./components/ForumPage";
 import Conversation from "./components/Conversation";
+import Friends from "./components/FriendsPage"
 
 
 // import React, { useEffect , useState } from 'react';
@@ -20,8 +21,10 @@ function App() {
           <Route exact path="/flashcards/create" element={<CreateComponent />} />
           <Route exact path="/login" element={<Login />}></Route>
           <Route exact path="/register" element={<Register />}></Route>
+          <Route exact path="/friends" element={<Friends />}></Route>
           <Route exact path="/forum" element={<ForumPage />}></Route>
           <Route path="/forum/conversation/:title" element={<Conversation />} />
+
 
           {/* <Route exact path="/yachts/:id" element={<YachtComponent />} />
           <Route exact path="/services" element={<AgencyComponent />} />
