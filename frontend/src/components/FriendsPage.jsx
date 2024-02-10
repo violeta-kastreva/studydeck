@@ -64,8 +64,8 @@ export default class FriendsPageComponent extends Component {
                                 <div id='friend-top-user'>
                                     <img src={guest} alt={guest} />
                                     <div id='friend-top-user-content'>
-                                        <div id='friend-top-user-name'>Lubo Dilov</div>
-                                        <div id='friend-top-user-number'>1337 Friends</div>
+                                        <div id='friend-top-user-name'>Guest</div>
+                                        <div id='friend-top-user-number'>{this.state.friendsUserNames.length} Friends</div>
                                     </div>
                                 </div>
                                 <div id='friend-top-edit'>
