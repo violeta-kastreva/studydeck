@@ -64,7 +64,7 @@
     color: white;
 }
 
-#register-error{
+.register-error{
     font-size: 15px;
     color: red;
     display: none;

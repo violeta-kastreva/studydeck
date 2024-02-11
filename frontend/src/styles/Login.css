@@ -64,7 +64,7 @@
     color: white;
 }
 
-#login-error{
+.login-error{
     color: red;
     font-size: 15px;
     display: none;
