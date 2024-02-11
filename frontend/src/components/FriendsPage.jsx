@@ -9,10 +9,49 @@ export default class FriendsPageComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            activeTab: 'Friends', 
-            friendsUserNames: ["Alex", "Lubo", "Alice", "Bob", "Charlie", "David", "Emma", "Frank", "Grace", "Helen", "Ivan", "Jack", "Kate", "Liam", "Mary", "Nathan", "Olivia", "Peter", "Rachel", "Sam"], // Array of friends user names
-            requestsUserNames: ["Velikova", "Bozhilov", "Velikova", "Bozhilov","Velikova", "Bozhilov","Velikova", "Bozhilov","Velikova", "Bozhilov","Velikova", "Bozhilov","Velikova", "Bozhilov","Velikova", "Bozhilov","Velikova", "Bozhilov","Velikova", "Bozhilov"] // Array of requests user names
+            activeTab: 'Friends',
+            friendsUserNames: [], 
+            requestsUserNames: [], 
         };
+    }
+
+    componentDidMount() {
+        this.fetchFriendsAndRequests();
+    }
+
+    fetchFriendsAndRequests = () => {
+        const jwt = sessionStorage.getItem("jwt");
+        if (!jwt) return;
+
+        const url = 'http://192.168.254.51:8080/friends'; 
+
+        const requestOptions = {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${jwt}`,
+            },
+            mode: 'cors',
+            credentials: 'include',
+        };
+
+        fetch(url, requestOptions)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+
+                this.setState({
+                    friendsUserNames: data.friendsUserNames,
+                    requestsUserNames: data.requestsUserNames,
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching friends and requests:', error);
+            });
     }
 
 
