@@ -1,0 +1,52 @@
+.stack-note-wrapper{
+    padding: 5px;
+    border-radius: 25px;
+    min-width: 250px;
+    min-height: 150px;
+    background-color: #4d4c7d;
+    cursor: pointer;
+}
+
+.inner-note-title{
+    background-color: #383060;
+    height: 30px;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.inner-note-description{
+    position: relative;
+    display: grid;
+    grid-template-rows: repeat(6 , 1fr);
+}
+
+.inner-note-description >div{
+    border-top: 1px solid black;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.dot{
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    background-color: black;
+}
+
+.filter{
+    margin-left: 10px;
+    background-color: limegreen;
+    border-radius: 5px;
+    height: 100%;
+}
+
+.inner-note-description >label{
+    position: absolute;
+    left: 20px;
+    line-height: 1.25;
+}
