@@ -1,68 +1,47 @@
 import "../styles/Dashboard.css";
 import Menus from "./Menus";
 import Stack from "./Stack";
+import React, { useEffect , useState } from 'react';
+
 
 function Dashboard() {
-  const stacks = [{
-    title: "Latest Cards", 
-    decks: [
-      {
-        name: "Linear Algebra",
-        description: "FlashCards with linear algebra terms for you to study and easily memorize.",
-        filters: ["Math" , "Algebra"],
-        data:[{
-          question: "Hi" ,
-          answer: "Hi!"
-        }]
-      } ,
-      {
-        name: "Linear Algebra",
-        description: "FlashCards with linear algebra terms for you to study and easily memorize.",
-        filters: ["Math" , "Algebra"],
-        data:[{
-          question: "Hi" ,
-          answer: "Hi!"
-        }]
-      } ,
-      {
-        name: "Linear Algebra",
-        description: "FlashCards with linear algebra terms for you to study and easily memorize.",
-        filters: ["Math" , "Algebra"],
-        data:[{
-          question: "Hi" ,
-          answer: "Hi!"
-        }]
-      } ,
-      {
-        name: "Linear Algebra",
-        description: "FlashCards with linear algebra terms for you to study and easily memorize.",
-        filters: ["Math" , "Algebra"],
-        data:[{
-          question: "Hi" ,
-          answer: "Hi!"
-        }]
-      } ,
-      {
-        name: "Linear Algebra",
-        description: "FlashCards with linear algebra terms for you to study and easily memorize.",
-        filters: ["Math" , "Algebra"],
-        data:[{
-          question: "Hi" ,
-          answer: "Hi!"
-        }]
-      } ,
-      {
-        name: "Linear Algebra",
-        description: "FlashCards with linear algebra terms for you to study and easily memorize.",
-        filters: ["Math" , "Algebra"],
-        data:[{
-          question: "Hi" ,
-          answer: "Hi!"
-        }]
-      }
-    ]
-  },
-]
+  const [jwt, setJwt] = useState();
+  const [stacks, setStacks] = useState([]);
+
+  useEffect(() => {
+    setJwt(sessionStorage.getItem("jwt"));
+  }, []);
+  
+  useEffect(() => {
+    if(!jwt)return;
+    const url = 'http://192.168.254.51:8080/dashboard'; // Replace with your API endpoint
+
+    const requestOptions = {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${jwt}`,
+        },
+        mode: 'cors',
+        credentials: 'include'
+    };
+
+    fetch(url, requestOptions)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            setStacks(data);
+            console.log('Get request successful:', data);
+        })
+        .catch(error => {
+            console.error('Error making GET request:', error);
+        });
+  }, [jwt]);
+
   return (
     <div className = 'wrapper'>
       <div className = "page" id = "dashboard-page">

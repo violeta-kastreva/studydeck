@@ -1,31 +1,27 @@
-import React, { useState, useEffect } from 'react';
 import "../styles/Login.css";
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
-    //     console.log('Submitted value:', emailValue);
-    // };
-    // useEffect(() => {
-    //     fetch('http://192.168.154.51:8080/api/users/logi')
-    //         .then(response => response.text())
-    //         .then(text => {
-    //             console.log(text);
-    //         })
-    //         .catch(error => {
-    //             console.error('There was an error fetching the filters:', error);
-    //         });
-    // }, []);
+    const navigate = useNavigate();
+
     const login = () => {
-        const email = document.getElementById('login-mail').value;
+        const username = document.getElementById('login-username').value;
         const password = document.getElementById('login-pass').value;
 
-        console.log(email , password);
+        const empty_error = document.getElementById('empty-error');
+        const wrong_error = document.getElementById('wrong-error');
 
-        const url = 'http://192.168.154.51:8080/api/users/login'; // Replace with your API endpoint
+        empty_error.style.display = "none";
+        wrong_error.style.display = "none";
 
+        if(/^\s*$/.test(username) || /^\s*$/.test(password)){
+            empty_error.style.display = "block";
+            return;
+        }
+
+        const url = 'http://192.168.254.51:8080/api/users/login'; // Replace with your API endpoint
         const dataToSend = {
-            username: email ,
+            username ,
             password
         };
 
@@ -47,10 +43,13 @@ function Login() {
                 return response.json();
             })
             .then(data => {
-                console.log('POST request successful:', data);
+                sessionStorage.setItem("jwt" , data.jwt)
+                navigate("/dashboard");
+                // console.log('POST request successful:', data);
             })
             .catch(error => {
-                console.error('Error making POST request:', error);
+                wrong_error.style.display = "block";
+                // console.error('Error making POST request:', error);
             });
     }
     return (
@@ -63,9 +62,10 @@ function Login() {
 
                     <div id = "login-form">
                         <label id = "login-title">Log In</label>
-                        <input id = "login-mail" placeholder = "Email"></input>
-                        <input id = "login-pass" placeholder = "Password"></input>
-                        <label id = "login-error">Wrong password or email</label>
+                        <input id = "login-username" placeholder = "Username"></input>
+                        <input id = "login-pass" placeholder = "Password" type = "password"></input>
+                        <label className = "login-error" id = "empty-error">Cannot provide empty password or email</label>
+                        <label className = "login-error" id = "wrong-error">Wrong password or email</label>
                         <button onClick = {() => {login()}}>Login</button>
                         <a href = "/register">Don't have an account? Register Here</a>
                     </div>
