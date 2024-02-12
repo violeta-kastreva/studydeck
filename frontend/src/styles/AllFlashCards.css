@@ -47,10 +47,3 @@
     width:100px;
     height: 100px; 
 }
-
-@media (max-width: 960px) {
-    .flashcard{
-        width: 100%;
-    }
-
-}
