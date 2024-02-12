@@ -8,7 +8,7 @@ import Dashboard from "./components/Dashboard";
 import ForumPage from "./components/ForumPage";
 import Conversation from "./components/Conversation";
 import Friends from "./components/FriendsPage"
-import FlashCard from "./components/FlashCard";
+import AllFlashCards from "./components/AllFlashCards";
 
 
 // import React, { useEffect , useState } from 'react';
@@ -25,7 +25,7 @@ function App() {
           <Route exact path="/register" element={<Register />}></Route>
           <Route exact path="/dashboard" element={<Dashboard />}></Route>
           <Route exact path="/friends" element={<Friends />}></Route>
-          <Route exact path="/flashcard" element={<FlashCard />}></Route>
+          <Route exact path="/flashcards" element={<AllFlashCards />}></Route>
           <Route exact path="/forum" element={<ForumPage />}></Route>
           <Route path="/forum/conversation/:title" element={<Conversation />} />
           {/* <Route exact path="/yachts/:id" element={<YachtComponent />} />

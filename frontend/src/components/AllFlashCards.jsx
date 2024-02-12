@@ -1,25 +1,54 @@
 import React, { useState } from 'react';
-import '../styles/FlashCard.css';
+import '../styles/AllFlashCards.css';
+import { useNavigate } from 'react-router-dom';
+import left from '../assets/left-chevron.png';
+import right from '../assets/right-chevron.png';
+import exit from '../assets/cancel.png';
+import FlashCard from './FlashCard';
+const AllFlashCards = () => {
+    const flashCardsData = [
+        { question: "What is React?", answer: "A JavaScript library for building user interfaces." },
+        { question: "What is a component?", answer: "An independent, reusable piece of UI." },
+        { question: "What is JSX?", answer: "A syntax extension for JavaScript that looks similar to XML." },
+    ];
 
-const FlashCard = () => {
-    const question = "Hey I have a question?";
-    const answer = "That is it!!!";
+    const navigate = useNavigate();
+    const [currentIndex, setCurrentIndex] = useState(0);
 
-    const [showAnswer, setShowAnswer] = useState(false);
-
-    const toggleShowAnswer = () => {
-        setShowAnswer(!showAnswer);
+    const handleNext = () => {
+        const nextIndex = currentIndex === flashCardsData.length - 1 ? 0 : currentIndex + 1;
+        setCurrentIndex(nextIndex);
     };
 
-    const cardClasses = `flashcard ${showAnswer ? 'flip' : ''}`;
-    const contentCardClasses = `flashcard-content ${showAnswer ? 'flip' : ''}`;
+    const handlePrevious = () => {
+        const prevIndex = currentIndex === 0 ? flashCardsData.length - 1 : currentIndex - 1;
+        setCurrentIndex(prevIndex);
+    };
+
+    const handleExit = () => {
+        navigate('/'); 
+    };
+
     return (
-        <div className='flashcard-field'>
-            <div className={cardClasses} onClick={toggleShowAnswer}>
-                <div className={contentCardClasses}> {showAnswer ? answer : question}</div>
+        <div className='allflash-all'>
+            <div className='allflash-top' onClick={handleExit}>
+                <img src={exit} alt="Exit" />
+            </div>
+            <div className='allflash-wrapper'>
+            <div className='allflash-left' onClick={handlePrevious}>
+                <img src={left} alt="Previous" />
+            </div>
+            <FlashCard 
+                key={currentIndex} 
+                question={flashCardsData[currentIndex].question} 
+                answer={flashCardsData[currentIndex].answer} 
+            />
+            <div className='allflash-right' onClick={handleNext}>
+                <img src={right} alt="Next" />
+            </div>
             </div>
         </div>
     );
 };
 
-export default FlashCard;
+export default AllFlashCards;
