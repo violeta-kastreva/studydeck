@@ -1,7 +1,8 @@
 package com.web.studydeck.model.entity;
 
 import com.web.studydeck.model.enums.UserRole;
-import jakarta.persistence.*;
+
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -32,6 +33,11 @@ public class User {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Friend> friends = new HashSet<>();
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Stack> stacks = new HashSet<>();
+
+
 
     // Getters and setters
 
@@ -107,4 +113,5 @@ public class User {
     public void setFriends(Set<Friend> friends) {
         this.friends = friends;
     }
+
 }
