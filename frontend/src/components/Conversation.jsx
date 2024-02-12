@@ -1,9 +1,11 @@
 import React, { useState , useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams , useNavigate } from 'react-router-dom';
 import '../styles/Conversation.css';
 import Message from './Message';
 
 const Conversation = () => {
+    const navigate = useNavigate();
+
     const { title } = useParams();
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState('');
@@ -16,7 +18,10 @@ const Conversation = () => {
     }, []);
 
     useEffect(() => {
-        if (!jwt) return;
+        if (!jwt){
+            navigate("/");
+            return;
+        }
             updateData();
     }, [jwt]); 
 

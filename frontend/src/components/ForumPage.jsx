@@ -22,7 +22,10 @@ const ForumPage = () => {
     }, []);
 
     useEffect(() => {
-        if (!jwt) return;
+        if (!jwt){
+            navigate("/");
+            return;
+        }
         const url = 'http://192.168.150.51:8080/forum'; 
 
         const requestOptions = {

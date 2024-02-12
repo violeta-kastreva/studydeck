@@ -20,8 +20,11 @@ function Dashboard() {
   }, []);
   
   useEffect(() => {
-    if(!jwt)return;
-    const url = 'http://192.168.150.51:8080/dashboard'; // Replace with your API endpoint
+    if(!jwt){
+      navigate("/");
+      return;
+    }
+      const url = 'http://192.168.150.51:8080/dashboard'; // Replace with your API endpoint
 
     const requestOptions = {
         method: 'GET',

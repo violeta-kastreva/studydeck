@@ -26,6 +26,11 @@ const CreateComponent = () => {
     setJwt(sessionStorage.getItem("jwt"));
   }, []);
 
+  useEffect(() => {
+    if(!jwt)
+      navigate("/");
+  } , [jwt])
+
   const addQuestion = () => {
     const question_el = document.getElementById('create-card-question');
     const answer_el = document.getElementById('create-card-answer');

@@ -21,7 +21,10 @@ export default class FriendsPageComponent extends Component {
 
     fetchFriendsAndRequests = () => {
         const jwt = sessionStorage.getItem("jwt");
-        if (!jwt) return;
+        if (!jwt){
+            window.location = "/";
+            return;   
+        }
 
         const url = 'http://192.168.150.51:8080/friends'; 
 
