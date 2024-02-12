@@ -1,6 +1,8 @@
 import "../styles/Login.css";
 import { useNavigate } from 'react-router-dom';
 
+import login_img from '../assets/login.png';
+
 function Login() {
     const navigate = useNavigate();
 
@@ -72,7 +74,7 @@ function Login() {
                 </div>
 
                 <div id = "login-right">
-
+                    <img src = {login_img}></img>
                 </div>
             </div>
         </div>

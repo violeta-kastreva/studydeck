@@ -12,7 +12,7 @@
 }
 
 #login-right , #login-left{
-    width: 50%;
+    width: 100%;
     height: inherit;
 }
 
@@ -77,4 +77,21 @@
 #login-form >a:hover{
     transition: 0.2s ease-in-out;
     transform: scale(1.05);
+}
+
+
+#login-right{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#login-right >img{
+    width: 100%;
+}
+
+@media (max-width: 800px) {
+    #login-right{
+        display: none;
+    }
 }

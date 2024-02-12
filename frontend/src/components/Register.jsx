@@ -1,6 +1,8 @@
 import "../styles/Register.css";
 import { useNavigate } from 'react-router-dom';
 
+import register_img from '../assets/register.png'
+
 
 function Register() {
     const navigate = useNavigate();
@@ -108,7 +110,7 @@ function Register() {
             </div>
 
             <div id = "register-right">
-
+                <img src = {register_img}></img>
             </div>
         </div>
     </div>
