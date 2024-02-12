@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/ForumPage.css';
 import Thread from "./Thread";
+import Menus from "./Menus";
 
 const ForumPage = () => {
     const [jwt, setJwt] = useState('');
@@ -22,7 +23,7 @@ const ForumPage = () => {
 
     useEffect(() => {
         if (!jwt) return;
-        const url = 'http://192.168.254.51:8080/forum'; 
+        const url = 'http://192.168.150.51:8080/forum'; 
 
         const requestOptions = {
             method: 'GET',
@@ -65,11 +66,13 @@ const ForumPage = () => {
                             <label> Messages: {forumData.statistics.messages}</label>
                             <label> Members: {forumData.statistics.members}</label>
                         </div>
-                        <div id = "forum-navigation"></div>
+                        <div id = "forum-navigation">
+                            <Menus menuIndex = {2}></Menus>
+                        </div>
                     </div>
                     <div id = "forum-middle-right">
                         {forumData.threads.map((thread, index) => (
-                            <div key={index} onClick={() => {handleClick(thread.title)}}>
+                            <div key={index} onClick={() => {handleClick(thread.title)}} style={{'width': '100%'}}>
                                 <Thread
                                     title={thread.title}
                                     rowTitle={thread.rowTitle}

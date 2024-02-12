@@ -25,12 +25,10 @@ function App() {
           <Route exact path="/register" element={<Register />}></Route>
           <Route exact path="/dashboard" element={<Dashboard />}></Route>
           <Route exact path="/friends" element={<Friends />}></Route>
-          <Route exact path="/flashcards" element={<AllFlashCards />}></Route>
+          {/* <Route exact path="/flashcards" element={<AllFlashCards />}></Route> */}
           <Route exact path="/forum" element={<ForumPage />}></Route>
           <Route path="/forum/conversation/:title" element={<Conversation />} />
-          {/* <Route exact path="/yachts/:id" element={<YachtComponent />} />
-          <Route exact path="/services" element={<AgencyComponent />} />
-          <Route exact path="/contacts" element={<ContactsComponent />} /> */}
+          <Route path="/dashboard/:title" element={<AllFlashCards />} />
         </Routes>
       </div>
     </Router>

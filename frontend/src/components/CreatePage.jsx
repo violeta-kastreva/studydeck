@@ -171,7 +171,7 @@ const CreateComponent = () => {
     setCards([]);
     setQna([]);
 
-    const url = 'http://192.168.254.51:8080/api/decks/create';
+    const url = 'http://192.168.150.51:8080/api/decks/create';
 
     console.log(...new_stack)
     const requestOptions = {

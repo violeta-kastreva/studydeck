@@ -22,7 +22,7 @@ const Conversation = () => {
 
 
     const updateData = () => {
-        const url = `http://192.168.254.51:8080/forum/${title}`; 
+        const url = `http://192.168.150.51:8080/forum/${title}`; 
 
         const requestOptions = {
             method: 'GET',
@@ -67,7 +67,7 @@ const Conversation = () => {
 
             if (!jwt) return;
 
-        const url = `http://192.168.254.51:8080/forum/${title}/comment`; 
+        const url = `http://192.168.150.51:8080/forum/${title}/comment`; 
 
           
 

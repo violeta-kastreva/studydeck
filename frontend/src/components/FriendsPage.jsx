@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import '../styles/FriendsPage.css';
 import guest from '../assets/guest.png';
 import FriendTable from './FriendTable';
-
+import Menus from "./Menus";
 
 
 export default class FriendsPageComponent extends Component {
@@ -23,7 +23,7 @@ export default class FriendsPageComponent extends Component {
         const jwt = sessionStorage.getItem("jwt");
         if (!jwt) return;
 
-        const url = 'http://192.168.254.51:8080/friends'; 
+        const url = 'http://192.168.150.51:8080/friends'; 
 
         const requestOptions = {
             method: 'GET',
@@ -63,7 +63,7 @@ export default class FriendsPageComponent extends Component {
         const jwt = sessionStorage.getItem("jwt");
         if (!jwt) return;
 
-        const url = `http://192.168.254.51:8080/friends/delete/${name}`; 
+        const url = `http://192.168.150.51:8080/friends/delete/${name}`; 
 
         const requestOptions = {
             method: 'DELETE',
@@ -101,7 +101,7 @@ export default class FriendsPageComponent extends Component {
         const jwt = sessionStorage.getItem("jwt");
         if (!jwt) return;
 
-        const url = `http://192.168.254.51:8080/accept/${name}`; 
+        const url = `http://192.168.150.51:8080/accept/${name}`; 
 
         const requestOptions = {
             method: 'POST',
@@ -132,6 +132,10 @@ export default class FriendsPageComponent extends Component {
     handleTabChange = (tabName) => {
         this.setState({ activeTab: tabName });
     }
+
+    // handleTitle = () => {
+    //     ('/'); 
+    // };
 
     // handleRemoveCell = (index) => {
     //     const { activeTab } = this.state;
@@ -169,30 +173,37 @@ export default class FriendsPageComponent extends Component {
             <div className = 'wrapper' style = {{height : "100%"}}>
                 <div className = "page">
                     <div id = "friend-head">
-                        <div id ='friend-head-label'>Study Deck</div>
+                        <a id ='friend-head-label' href='/'>Study Deck</a>
                     </div>
                     <div id='friend-main'>
-                        <div id = "friend-top">
-                            <div id='friend-top-first'></div>
-                            <div id='friend-top-second'>
-                                <div id='friend-top-user'>
-                                    <img src={guest} alt={guest} />
-                                    <div id='friend-top-user-content'>
-                                        <div id='friend-top-user-name'>Guest</div>
-                                        <div id='friend-top-user-number'>{this.state.friendsUserNames.length} Friends</div>
-                                    </div>
-                                </div>
-                                <div id='friend-top-edit'>
-                                    <label>Edit profile</label>
-                                </div>
+                        <div id='friend-main-left'>
+                            <div id = "forum-navigation">
+                                <Menus menuIndex = {1}></Menus>
                             </div>
                         </div>
-                        <div id = "friend-middle">
-                            <div id='friend-middle-top'>                               
-                                 <div id='friend-middle-top-fr' onClick={() => this.handleTabChange('Friends')} style={friendsTabStyle} >Friends</div>
-                                <div id='friend-middle-top-req' onClick={() => this.handleTabChange('Requests')} style={requestsTabStyle}>Requests</div>
+                        <div id='friend-main-right'>
+                            <div id = "friend-top">
+                                <div id='friend-top-first'></div>
+                                <div id='friend-top-second'>
+                                    <div id='friend-top-user'>
+                                        <img src={guest} alt={guest} />
+                                        <div id='friend-top-user-content'>
+                                            <div id='friend-top-user-name'>Guest</div>
+                                            <div id='friend-top-user-number'>{this.state.friendsUserNames.length} Friends</div>
+                                        </div>
+                                    </div>
+                                    <div id='friend-top-edit'>
+                                        <label>Edit profile</label>
+                                    </div>
+                                </div>
                             </div>
-                            <FriendTable userNames={userNames}  buttonText={buttonText} onRemoveCell={this.removeUser}  onAcceptRequest={this.handleAcceptRequest} />
+                            <div id = "friend-middle">
+                                <div id='friend-middle-top'>                               
+                                    <div id='friend-middle-top-fr' onClick={() => this.handleTabChange('Friends')} style={friendsTabStyle} >Friends</div>
+                                    <div id='friend-middle-top-req' onClick={() => this.handleTabChange('Requests')} style={requestsTabStyle}>Requests</div>
+                                </div>
+                                <FriendTable userNames={userNames}  buttonText={buttonText} onRemoveCell={this.removeUser}  onAcceptRequest={this.handleAcceptRequest} />
+                            </div>
                         </div>
                     </div>
                 </div>

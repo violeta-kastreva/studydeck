@@ -2,11 +2,18 @@ import "../styles/Dashboard.css";
 import Menus from "./Menus";
 import Stack from "./Stack";
 import React, { useEffect , useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
 function Dashboard() {
   const [jwt, setJwt] = useState();
   const [stacks, setStacks] = useState([]);
+
+  const navigate = useNavigate();
+  
+  const handleClick = (title, data) => {
+    navigate(`/dashboard/${title}`, { state: { data } });
+  };
 
   useEffect(() => {
     setJwt(sessionStorage.getItem("jwt"));
@@ -14,7 +21,7 @@ function Dashboard() {
   
   useEffect(() => {
     if(!jwt)return;
-    const url = 'http://192.168.254.51:8080/dashboard'; // Replace with your API endpoint
+    const url = 'http://192.168.150.51:8080/dashboard'; // Replace with your API endpoint
 
     const requestOptions = {
         method: 'GET',
@@ -63,7 +70,9 @@ function Dashboard() {
                   <div className="dashboard-stack-row">
                   {
                     stack.decks.map((deck , index) => (
-                      <Stack key = {index} deck = {deck}/>
+                      <div key={index} onClick={() => {handleClick(deck.name, deck.data)}}>
+                        <Stack key = {index} deck = {deck}/>
+                      </div>
                     ))
                   }
                   </div>

@@ -5,12 +5,16 @@ import left from '../assets/left-chevron.png';
 import right from '../assets/right-chevron.png';
 import exit from '../assets/cancel.png';
 import FlashCard from './FlashCard';
+import { useLocation } from 'react-router-dom';
 const AllFlashCards = () => {
-    const flashCardsData = [
-        { question: "What is React?", answer: "A JavaScript library for building user interfaces." },
-        { question: "What is a component?", answer: "An independent, reusable piece of UI." },
-        { question: "What is JSX?", answer: "A syntax extension for JavaScript that looks similar to XML." },
-    ];
+    const location = useLocation();
+    const data = location.state?.data;
+    const flashCardsData = data;
+    // const flashCardsData = [
+    //     { question: "What is React?", answer: "A JavaScript library for building user interfaces." },
+    //     { question: "What is a component?", answer: "An independent, reusable piece of UI." },
+    //     { question: "What is JSX?", answer: "A syntax extension for JavaScript that looks similar to XML." },
+    // ];
 
     const navigate = useNavigate();
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -26,7 +30,7 @@ const AllFlashCards = () => {
     };
 
     const handleExit = () => {
-        navigate('/'); 
+        navigate('/dashboard'); 
     };
 
     return (

@@ -54,9 +54,12 @@
 
 #forum-navigation{
     width: 350px;
-    height: 800px;
+    height: 350px;
     background-color: #272530;
     border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 
