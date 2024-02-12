@@ -8,6 +8,7 @@
     position: fixed;
     right: 30px;
     top: 45px;
+    z-index: 2000;
 }
 
 .allflash-top >img{

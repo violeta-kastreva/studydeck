@@ -39,8 +39,7 @@
 }
 
 @media (max-width: 960px) {
-    .flashcard{
-        width: 100%;
+    .flashcard-field{
+        padding: 0px 0px 50px 0px;
     }
-
 }

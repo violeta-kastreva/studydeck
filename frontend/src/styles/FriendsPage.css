@@ -115,7 +115,7 @@
 #friend-top-edit {
     width: 200px;
     height: 40px;
-    margin: 50px 50px 0px 0px;
+    margin: 80px 50px 0px 0px;
     border-radius: 40px;
     display: flex;
     justify-content: center;
@@ -163,5 +163,12 @@
     padding: 0px 5px;
     font-size: 30px;
     color: white;
+}
+
+
+@media (max-width: 1200px) { 
+    #friend-main{
+        flex-direction: column;
+    }
 }
 
