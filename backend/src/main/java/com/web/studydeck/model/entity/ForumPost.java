@@ -1,5 +1,6 @@
 package com.web.studydeck.model.entity;
-import jakarta.persistence.*;
+import javax.persistence.*;
+
 
 @Entity
 public class ForumPost {
@@ -11,7 +12,44 @@ public class ForumPost {
 
     @ManyToOne
     @JoinColumn(name = "thread_id")
-    private Forum thread;
+    private Forum forum;
 
-    // Getters and Setters
+    // Add this field and annotations to establish the many-to-one relationship
+    @ManyToOne
+    @JoinColumn(name = "user_id") // Adjust the column name as necessary
+    private User user;
+
+    // Getters and setters including the new user field
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public Forum getForum() {
+        return forum;
+    }
+
+    public void setForum(Forum forum) {
+        this.forum = forum;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }

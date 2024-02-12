@@ -1,15 +1,14 @@
 package com.web.studydeck.service;
 
-import com.web.studydeck.model.entity.Schedule;
+import com.web.studydeck.model.service.ScheduleDTO;
 
 import java.util.List;
 
 public interface ScheduleService {
-    List<Schedule> findAllSchedules();
-    Schedule findScheduleById(Long id);
-    Schedule saveSchedule(Schedule schedule);
+    List<ScheduleDTO> findAllSchedules();
+    ScheduleDTO findScheduleById(Long id);
+    ScheduleDTO saveSchedule(ScheduleDTO scheduleDTO);
     void deleteSchedule(Long id);
-
-    List<Schedule> findSchedulesByUserId(Long userId);
-    // Other necessary methods
+    List<ScheduleDTO> findSchedulesByUserId(Long userId);
 }
+

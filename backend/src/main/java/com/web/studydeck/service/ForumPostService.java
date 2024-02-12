@@ -1,13 +1,12 @@
 package com.web.studydeck.service;
 
-import com.web.studydeck.model.entity.ForumPost;
+import com.web.studydeck.model.service.ForumPostDTO;
 
 import java.util.List;
 
 public interface ForumPostService {
-    List<ForumPost> findAllForumPosts();
-    ForumPost findForumPostById(Long id);
-    ForumPost saveForumPost(ForumPost forumPost);
+    List<ForumPostDTO> findAllForumPosts();
+    ForumPostDTO findForumPostById(Long id);
+    ForumPostDTO saveForumPost(ForumPostDTO forumPostDTO);
     void deleteForumPost(Long id);
-    // Other necessary methods
 }

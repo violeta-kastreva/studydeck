@@ -1,5 +1,5 @@
 package com.web.studydeck.model.entity;
-import jakarta.persistence.*;
+import javax.persistence.*;
 @Entity
 public class Routine {
     @Id
