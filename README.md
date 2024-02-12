@@ -26,4 +26,4 @@ To get started with StudyDeck:
 
 1. **Clone the repository**:
 ```bash
-git clone https://github.com/yourusername/studydeck.git
+git clone https://github.com/violeta-kastreva/studydeck.git
