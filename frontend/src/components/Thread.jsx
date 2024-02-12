@@ -1,16 +1,10 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import '../styles/Thread.css';
 import guest from '../assets/guest.png';
 
 const Thread = ({ title, rowTitle, commentsCount, userName, userCreatedAt }) => {
-    const navigate = useNavigate();
-
-    const handleClick = () => {
-        navigate(`/forum/conversation/${encodeURIComponent(title)}`);
-    };
     return (
-        <div className='thread'  onClick={handleClick}>
+        <div className='thread'>
             <div className='thread-title'>
                 {title}
             </div>

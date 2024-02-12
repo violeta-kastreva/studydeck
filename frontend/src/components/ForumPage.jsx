@@ -1,17 +1,23 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../styles/ForumPage.css';
 import Thread from "./Thread";
 
 const ForumPage = () => {
     const [jwt, setJwt] = useState('');
     const [forumData, setForumData] = useState({
-        forumStatistics: { threads: 0, messages: 0, members: 0 },
+        statistics: { threads: 0, messages: 0, members: 0 },
         threads: []
     });
 
+    const navigate = useNavigate();
+
+    const handleClick = (title) => {
+        navigate(`/forum/conversation/${title}`);
+    };
+
     useEffect(() => {
-        const jwtToken = sessionStorage.getItem("jwt");
-        setJwt(jwtToken);
+        setJwt(sessionStorage.getItem("jwt"));
     }, []);
 
     useEffect(() => {
@@ -36,6 +42,7 @@ const ForumPage = () => {
                 return response.json();
             })
             .then(data => {
+                console.log(data)
                 setForumData(data);
             })
             .catch(error => {
@@ -54,22 +61,23 @@ const ForumPage = () => {
                     <div id = "forum-middle-left">
                         <div id = "forum-statistics">
                         <div id="forum-statistics-title">Forum statistics:</div>
-                            <label> Threads: {forumData.forumStatistics.threads}</label>
-                            <label> Messages: {forumData.forumStatistics.messages}</label>
-                            <label> Members: {forumData.forumStatistics.members}</label>
+                            <label> Threads: {forumData.statistics.threads}</label>
+                            <label> Messages: {forumData.statistics.messages}</label>
+                            <label> Members: {forumData.statistics.members}</label>
                         </div>
                         <div id = "forum-navigation"></div>
                     </div>
                     <div id = "forum-middle-right">
                         {forumData.threads.map((thread, index) => (
-                            <Thread
-                                key={index}
-                                title={thread.title}
-                                rowTitle={thread.rowTitle}
-                                commentsCount={thread.commentsCount}
-                                userName={thread.userName}
-                                userCreatedAt={thread.userCreatedAt}
-                            />
+                            <div key={index} onClick={() => {handleClick(thread.title)}}>
+                                <Thread
+                                    title={thread.title}
+                                    rowTitle={thread.rowTitle}
+                                    commentsCount={thread.commentsCount}
+                                    userName={thread.userName}
+                                    userCreatedAt={thread.userCreatedAt}
+                                />
+                            </div>
                         ))}
                     </div>
                 </div>

@@ -49,7 +49,7 @@ function Login() {
             })
             .catch(error => {
                 wrong_error.style.display = "block";
-                // console.error('Error making POST request:', error);
+                console.error('Error making POST request:', error);
             });
     }
     return (

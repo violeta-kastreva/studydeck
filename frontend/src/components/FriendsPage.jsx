@@ -43,11 +43,85 @@ export default class FriendsPageComponent extends Component {
                 return response.json();
             })
             .then(data => {
-
+                console.log(data)
                 this.setState({
-                    friendsUserNames: data.friendsUserNames,
-                    requestsUserNames: data.requestsUserNames,
+                    friendsUserNames: data.friendsUsernames,
+                    requestsUserNames: data.requestsUsernames,
                 });
+            })
+            .catch(error => {
+                console.error('Error fetching friends and requests:', error);
+            });
+    }
+
+    removeUser = (index) => {
+        const { activeTab , friendsUserNames , requestsUserNames } = this.state;
+        const name = activeTab === 'Friends'? friendsUserNames[index] : requestsUserNames[index];
+        if(activeTab !== 'Friends')
+            return;
+
+        const jwt = sessionStorage.getItem("jwt");
+        if (!jwt) return;
+
+        const url = `http://192.168.254.51:8080/friends/delete/${name}`; 
+
+        const requestOptions = {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${jwt}`,
+            },
+            mode: 'cors',
+            credentials: 'include',
+        };
+
+        fetch(url, requestOptions)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                this.fetchFriendsAndRequests();
+                console.log("Successfull fetch"  , data);
+            })
+            .catch(error => {
+                console.error('Error fetching friends and requests:', error);
+            });
+    }
+
+    acceptUser = (index) => {
+        const { activeTab , friendsUserNames , requestsUserNames } = this.state;
+        const name = activeTab === 'Friends'? friendsUserNames[index] : requestsUserNames[index];
+        console.log(name)
+        if(activeTab === 'Friends')
+            return;
+
+        const jwt = sessionStorage.getItem("jwt");
+        if (!jwt) return;
+
+        const url = `http://192.168.254.51:8080/accept/${name}`; 
+
+        const requestOptions = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${jwt}`,
+            },
+            mode: 'cors',
+            credentials: 'include',
+        };
+
+        fetch(url, requestOptions)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log("Successfull fetch"  , data);
             })
             .catch(error => {
                 console.error('Error fetching friends and requests:', error);
@@ -59,12 +133,13 @@ export default class FriendsPageComponent extends Component {
         this.setState({ activeTab: tabName });
     }
 
-    handleRemoveCell = (index) => {
-        const { activeTab } = this.state;
-        const newArray = activeTab === 'Friends' ? [...this.state.friendsUserNames] : [...this.state.requestsUserNames];
-        newArray.splice(index, 1);
-        activeTab === 'Friends' ? this.setState({ friendsUserNames: newArray }) : this.setState({ requestsUserNames: newArray });
-    }
+    // handleRemoveCell = (index) => {
+    //     const { activeTab } = this.state;
+    //     const newArray = activeTab === 'Friends' ? [...this.state.friendsUserNames] : [...this.state.requestsUserNames];
+    //     const name = this.state.activeTab === 'Friends' ? this.state.friendsUserNames[index] : this.state.requestsUserNames[index];
+    //     newArray.splice(index, 1);
+    //     activeTab === 'Friends' ? this.setState({ friendsUserNames: newArray }) : this.setState({ requestsUserNames: newArray });
+    // }
 
     handleAcceptRequest = (index) => {
         const { requestsUserNames, friendsUserNames } = this.state;
@@ -117,7 +192,7 @@ export default class FriendsPageComponent extends Component {
                                  <div id='friend-middle-top-fr' onClick={() => this.handleTabChange('Friends')} style={friendsTabStyle} >Friends</div>
                                 <div id='friend-middle-top-req' onClick={() => this.handleTabChange('Requests')} style={requestsTabStyle}>Requests</div>
                             </div>
-                            <FriendTable userNames={userNames}  buttonText={buttonText} onRemoveCell={this.handleRemoveCell}  onAcceptRequest={this.handleAcceptRequest} />
+                            <FriendTable userNames={userNames}  buttonText={buttonText} onRemoveCell={this.removeUser}  onAcceptRequest={this.handleAcceptRequest} />
                         </div>
                     </div>
                 </div>
