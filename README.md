@@ -6,7 +6,7 @@ StudyDeck is a user-friendly study help application designed to make learning an
 
 - **Spring Boot**: Manages server-side functionalities, simplifying the development of stand-alone, production-grade Spring based Applications.
 - **JPA/Hibernate**: Facilitates data interactions between the backend logic and the database, providing a robust ORM solution.
-- **PostgreSQL/MySQL**: Serves as the database, storing users' data securely and efficiently.
+- **MySQL**: Serves as the database, storing users' data securely and efficiently.
 - **JavaScript (React.js)**: Enhances front-end interactions, providing users with a dynamic and responsive user interface. The choice between React.js and Vue.js will be determined based on the project's specific needs.
 - **CSS/Bootstrap**: Ensures the application is visually appealing and user-friendly by stylizing the UI.
 
