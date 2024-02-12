@@ -11,13 +11,16 @@ export default class FriendsPageComponent extends Component {
         this.state = {
             activeTab: 'Friends',
             friendsUserNames: [], 
-            requestsUserNames: [], 
+            requestsUserNames: [],
+            username: undefined, 
         };
     }
 
     componentDidMount() {
         this.fetchFriendsAndRequests();
+        // this.getUsernameFromToken();
     }
+
 
     fetchFriendsAndRequests = () => {
         const jwt = sessionStorage.getItem("jwt");
@@ -133,17 +136,25 @@ export default class FriendsPageComponent extends Component {
         this.setState({ activeTab: tabName });
     }
 
-    // handleTitle = () => {
-    //     ('/'); 
-    // };
+    getUsernameFromToken = () => {
+        const token = sessionStorage.getItem("jwt");
+        if (!token) return;
+        const parts = token.split('.');
+        if (parts.length !== 3) {
+          throw new Error('The token is invalid');
+        }
+      
+        const payload = parts[1];
+        const decodedPayload = atob(payload.replace(/_/g, '/').replace(/-/g, '+'));
+      
+        const claims = JSON.parse(decodedPayload);
 
-    // handleRemoveCell = (index) => {
-    //     const { activeTab } = this.state;
-    //     const newArray = activeTab === 'Friends' ? [...this.state.friendsUserNames] : [...this.state.requestsUserNames];
-    //     const name = this.state.activeTab === 'Friends' ? this.state.friendsUserNames[index] : this.state.requestsUserNames[index];
-    //     newArray.splice(index, 1);
-    //     activeTab === 'Friends' ? this.setState({ friendsUserNames: newArray }) : this.setState({ requestsUserNames: newArray });
-    // }
+        // this.setState({
+        //     username: claims.username,
+        // });
+      
+        return claims.username;
+    }
 
     handleAcceptRequest = (index) => {
         const { requestsUserNames, friendsUserNames } = this.state;
@@ -188,7 +199,7 @@ export default class FriendsPageComponent extends Component {
                                     <div id='friend-top-user'>
                                         <img src={guest} alt={guest} />
                                         <div id='friend-top-user-content'>
-                                            <div id='friend-top-user-name'>Guest</div>
+                                            <div id='friend-top-user-name'>Your Friends</div>
                                             <div id='friend-top-user-number'>{this.state.friendsUserNames.length} Friends</div>
                                         </div>
                                     </div>
