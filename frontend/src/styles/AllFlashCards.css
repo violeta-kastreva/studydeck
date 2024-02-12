@@ -1,41 +1,47 @@
-.flashcard-field{
-    width: 100% - 100px;
-    height: 100% - 100px;
-    padding: 50px;
+.allflash-all{
+    display: flex;
+    flex-direction: column;
+}
+.allflash-top{
+    height: 70px;
+    position: fixed;
+    right: 30px;
+    top: 45px;
+}
+
+.allflash-top >img{
+    height: 70px;
+    position: fixed;
+    right: 30px;
+    top: 45px;
+}
+.allflash-wrapper{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding: 20px;
     background-color: #1e1d24;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    perspective: 1000px;
-}
-.flashcard{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 20px;
-    width: 80%;
-    height: 800px;
-    background-color: #272530;
-    transform-style: preserve-3d;
-    transition: transform 0.6s; 
 }
 
-.flashcard.flip {
-    transform: rotateY(180deg);
+.allflash-left{
+    width:100px;
+    height: 100px;
 }
 
-.flashcard-content {
-    display:flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    width: 400px;
-    font-size: 18px;
-    overflow-wrap: break-word;
+.allflash-left >img{
+    width:100px;
+    height: 100px; 
+}
+.allflash-right{
+    width:100px;
+    height: 100px;
 }
 
-.flashcard-content.flip {
-    transform: rotateY(180deg);
+.allflash-right >img{
+    width:100px;
+    height: 100px; 
 }
 
 @media (max-width: 960px) {

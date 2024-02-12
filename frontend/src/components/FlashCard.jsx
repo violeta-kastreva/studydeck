@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import '../styles/FlashCard.css';
 
-const FlashCard = () => {
-    const question = "Hey I have a question?";
-    const answer = "That is it!!!";
+const FlashCard = ({question, answer}) => {
 
     const [showAnswer, setShowAnswer] = useState(false);
 
